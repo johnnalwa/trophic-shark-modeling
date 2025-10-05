@@ -1,0 +1,48 @@
+Coords:
+
+Data vars (limited):
+[000] wavelength: dims=('number_of_bands',), shape=(286,), units='nm', long_name='wavelengths', standard_name=''
+[001] vcal_gain: dims=('number_of_reflective_bands',), shape=(286,), units='', long_name='Vicarious Calibration Gain', standard_name=''
+[002] vcal_offset: dims=('number_of_reflective_bands',), shape=(286,), units='mW cm^-2 um^-1 sr^-1', long_name='Vicarious Calibration Offset', standard_name=''
+[003] F0: dims=('number_of_reflective_bands',), shape=(286,), units='W m^-2 um^-1', long_name='Mean Solar Flux', standard_name=''
+[004] aw: dims=('number_of_reflective_bands',), shape=(286,), units='m^-1', long_name='Band-pass averaged absorption coefficient for seawater', standard_name='volume_absorption_coefficient_of_radiative_flux_in_sea_water'
+[005] bbw: dims=('number_of_reflective_bands',), shape=(286,), units='m^-1', long_name='Band-pass averaged backscattering coefficient for seawater', standard_name='volume_backwards_scattering_coefficient_of_radiative_flux_in_sea_water'
+[006] k_oz: dims=('number_of_reflective_bands',), shape=(286,), units='cm^-1', long_name='Ozone Absorption cross-sections', standard_name=''
+[007] k_no2: dims=('number_of_reflective_bands',), shape=(286,), units='cm^2 molecule^-1', long_name='NO2 Absorption cross-sections', standard_name=''
+[008] Tau_r: dims=('number_of_reflective_bands',), shape=(286,), units='', long_name='Rayleigh Optical Thickness', standard_name=''
+[009] year: dims=('number_of_lines',), shape=(1709,), units='years', long_name='Scan year', standard_name=''
+[010] day: dims=('number_of_lines',), shape=(1709,), units='days', long_name='Scan day of year', standard_name=''
+[011] msec: dims=('number_of_lines',), shape=(1709,), units='milliseconds', long_name='Scan time, milliseconds of day', standard_name=''
+[012] time: dims=('number_of_lines',), shape=(1709,), units='seconds since 1970-1-1', long_name='scan line time in seconds since 1970-1-1', standard_name=''
+[013] detnum: dims=('number_of_lines',), shape=(1709,), units='', long_name='Detector Number (zero-based)', standard_name=''
+[014] mside: dims=('number_of_lines',), shape=(1709,), units='', long_name='Mirror Side (zero-based)', standard_name=''
+[015] slon: dims=('number_of_lines',), shape=(1709,), units='degrees_east', long_name='Starting Longitude', standard_name='longitude'
+[016] clon: dims=('number_of_lines',), shape=(1709,), units='degrees_east', long_name='Center Longitude', standard_name='longitude'
+[017] elon: dims=('number_of_lines',), shape=(1709,), units='degrees_east', long_name='Ending Longitude', standard_name='longitude'
+[018] slat: dims=('number_of_lines',), shape=(1709,), units='degrees_north', long_name='Starting Latitude', standard_name='latitude'
+[019] clat: dims=('number_of_lines',), shape=(1709,), units='degrees_north', long_name='Center Latitude', standard_name='latitude'
+[020] elat: dims=('number_of_lines',), shape=(1709,), units='degrees_north', long_name='Ending Latitude', standard_name='latitude'
+[021] csol_z: dims=('number_of_lines',), shape=(1709,), units='degree', long_name='Center Solar Zenith Angle', standard_name=''
+[022] chlor_a: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='mg m^-3', long_name='Chlorophyll Concentration, OCI Algorithm', standard_name='mass_concentration_of_chlorophyll_in_sea_water'
+[023] carbon_phyto: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='mg m^-3', long_name='Phytoplankton Carbon', standard_name=''
+[024] poc: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='mg m^-3', long_name='Particulate Organic Carbon, D. Stramski, 2022 (hybrid version)', standard_name=''
+[025] chlor_a_unc: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='mg m^-3', long_name='Uncertainty in chlorophyll a concentration', standard_name='chlorophyll_concentration_in_sea_water standard_error'
+[026] carbon_phyto_unc: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='mg m^-3', long_name='Phytoplankton Carbon standard uncertainty', standard_name=''
+[027] l2_flags: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='', long_name='Level-2 Processing Flags', standard_name=''
+[028] longitude: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='degrees_east', long_name='Longitude', standard_name='longitude'
+[029] latitude: dims=('number_of_lines', 'pixels_per_line'), shape=(1709, 1272), units='degrees_north', long_name='Latitude', standard_name='latitude'
+[030] tilt: dims=('number_of_lines',), shape=(1709,), units='degree', long_name='Sensor tilt angle', standard_name=''
+
+Total data vars: 31
+
+Detected variables (before overrides):
+ - lat: latitude
+ - lon: longitude
+ - chlor: chlor_a
+ - kd490: None
+ - bbp: bbw
+
+Overrides provided:
+ - lat: latitude
+ - lon: longitude
+ - chlor: chlor_a

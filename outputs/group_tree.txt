@@ -1,0 +1,46 @@
+Group: /
+  dim number_of_lines: size=1709
+  dim pixels_per_line: size=1272
+  dim bands_per_pixel: size=286
+  dim number_of_reflectance_location_values: size=10
+  dim number_of_cloud_phases: size=2
+  dim number_of_bands: size=286
+  dim number_of_reflective_bands: size=286
+  Group: /sensor_band_parameters
+    var wavelength: shape=(286,), units='nm', long_name='wavelengths', standard_name=''
+    var vcal_gain: shape=(286,), units='', long_name='Vicarious Calibration Gain', standard_name=''
+    var vcal_offset: shape=(286,), units='mW cm^-2 um^-1 sr^-1', long_name='Vicarious Calibration Offset', standard_name=''
+    var F0: shape=(286,), units='W m^-2 um^-1', long_name='Mean Solar Flux', standard_name=''
+    var aw: shape=(286,), units='m^-1', long_name='Band-pass averaged absorption coefficient for seawater', standard_name='volume_absorption_coefficient_of_radiative_flux_in_sea_water'
+    var bbw: shape=(286,), units='m^-1', long_name='Band-pass averaged backscattering coefficient for seawater', standard_name='volume_backwards_scattering_coefficient_of_radiative_flux_in_sea_water'
+    var k_oz: shape=(286,), units='cm^-1', long_name='Ozone Absorption cross-sections', standard_name=''
+    var k_no2: shape=(286,), units='cm^2 molecule^-1', long_name='NO2 Absorption cross-sections', standard_name=''
+    var Tau_r: shape=(286,), units='', long_name='Rayleigh Optical Thickness', standard_name=''
+  Group: /scan_line_attributes
+    var year: shape=(1709,), units='years', long_name='Scan year', standard_name=''
+    var day: shape=(1709,), units='days', long_name='Scan day of year', standard_name=''
+    var msec: shape=(1709,), units='milliseconds', long_name='Scan time, milliseconds of day', standard_name=''
+    var time: shape=(1709,), units='seconds since 1970-1-1', long_name='scan line time in seconds since 1970-1-1', standard_name=''
+    var detnum: shape=(1709,), units='', long_name='Detector Number (zero-based)', standard_name=''
+    var mside: shape=(1709,), units='', long_name='Mirror Side (zero-based)', standard_name=''
+    var slon: shape=(1709,), units='degrees_east', long_name='Starting Longitude', standard_name='longitude'
+    var clon: shape=(1709,), units='degrees_east', long_name='Center Longitude', standard_name='longitude'
+    var elon: shape=(1709,), units='degrees_east', long_name='Ending Longitude', standard_name='longitude'
+    var slat: shape=(1709,), units='degrees_north', long_name='Starting Latitude', standard_name='latitude'
+    var clat: shape=(1709,), units='degrees_north', long_name='Center Latitude', standard_name='latitude'
+    var elat: shape=(1709,), units='degrees_north', long_name='Ending Latitude', standard_name='latitude'
+    var csol_z: shape=(1709,), units='degree', long_name='Center Solar Zenith Angle', standard_name=''
+  Group: /geophysical_data
+    var chlor_a: shape=(1709, 1272), units='mg m^-3', long_name='Chlorophyll Concentration, OCI Algorithm', standard_name='mass_concentration_of_chlorophyll_in_sea_water'
+    var carbon_phyto: shape=(1709, 1272), units='mg m^-3', long_name='Phytoplankton Carbon', standard_name=''
+    var poc: shape=(1709, 1272), units='mg m^-3', long_name='Particulate Organic Carbon, D. Stramski, 2022 (hybrid version)', standard_name=''
+    var chlor_a_unc: shape=(1709, 1272), units='mg m^-3', long_name='Uncertainty in chlorophyll a concentration', standard_name='chlorophyll_concentration_in_sea_water standard_error'
+    var carbon_phyto_unc: shape=(1709, 1272), units='mg m^-3', long_name='Phytoplankton Carbon standard uncertainty', standard_name=''
+    var l2_flags: shape=(1709, 1272), units='', long_name='Level-2 Processing Flags', standard_name=''
+  Group: /navigation_data
+    var longitude: shape=(1709, 1272), units='degrees_east', long_name='Longitude', standard_name='longitude'
+    var latitude: shape=(1709, 1272), units='degrees_north', long_name='Latitude', standard_name='latitude'
+    var tilt: shape=(1709,), units='degree', long_name='Sensor tilt angle', standard_name=''
+  Group: /processing_control
+    Group: /processing_control/input_parameters
+    Group: /processing_control/flag_percentages
