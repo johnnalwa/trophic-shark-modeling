@@ -1,8 +1,8 @@
-# 🦈 Trophic Shark Modeling - NASA Space Apps Challenge
+# Trophic Shark Modeling - NASA Space Apps Challenge
 
 A comprehensive mathematical framework for predicting shark habitat suitability using NASA PACE satellite data, incorporating trophic cascade modeling and advanced oceanographic features.
 
-## 🌊 Project Overview
+## Project Overview
 
 This project addresses the NASA Space Apps Challenge by developing an integrated system that:
 - Predicts shark habitat suitability using satellite oceanographic data
@@ -11,23 +11,105 @@ This project addresses the NASA Space Apps Challenge by developing an integrated
 - Demonstrates real-time shark tag integration concepts
 - Provides educational visualizations for conservation awareness
 
-## 🚀 Features
+## Core Mathematical Framework
 
-### Core Capabilities
-- **Trophic Lag Modeling**: Implements realistic time delays in the food web (phytoplankton → zooplankton → fish → sharks)
-- **Advanced Habitat Suitability Index (HSI)**: Multi-factor habitat prediction with uncertainty quantification
-- **Oceanographic Feature Detection**: Identifies ocean fronts, eddies, and thermal zones
-- **Educational Visualizations**: High school-friendly graphics explaining marine ecosystems
-- **Real-time Tag Simulation**: Demonstrates feeding event detection and behavioral classification
+### 1. Trophic Cascade Modeling
 
-### Mathematical Framework
-- **Trophic System Lag**: ~30 days total (5 + 10 + 15+ day cascading delays)
-- **Prey Density Modeling**: Spatially explicit food availability estimation
-- **Thermal Habitat Preferences**: Species-specific temperature suitability
-- **Uncertainty Quantification**: Confidence intervals for all predictions
-- **Multi-scale Analysis**: From satellite pixels to ecosystem-wide patterns
+**Concept**: Models the time-delayed response through marine food webs from phytoplankton blooms to shark foraging activity.
 
-## 📊 Input Data
+**Algorithm Implementation**:
+- **Gaussian Kernel**: Phytoplankton to zooplankton response (5-day lag)
+  ```
+  kernel = exp(-0.5 * (t / sigma)²) / normalization_factor
+  ```
+- **Exponential Decay**: Zooplankton to small fish response (10-day lag)
+  ```
+  kernel = exp(-t / tau) / normalization_factor
+  ```
+- **Gamma Distribution**: Small fish to shark response (15+ day lag)
+  ```
+  kernel = gamma_pdf(t, shape=2.0, scale=lag/2.0)
+  ```
+
+**Mathematical Process**:
+1. Convolve phytoplankton time series with Gaussian kernel → zooplankton biomass
+2. Apply energy transfer efficiency (0.8) at each trophic level
+3. Convolve zooplankton with exponential kernel → small fish biomass
+4. Convolve small fish with gamma kernel → shark foraging potential
+
+### 2. Habitat Suitability Index (HSI) Computation
+
+**Basic HSI Algorithm**:
+- **Robust Scaling**: Uses percentile-based normalization (2nd-98th percentile)
+  ```
+  scaled_value = (clipped_value - median) / (0.5 * percentile_range)
+  ```
+- **Weighted Feature Combination**:
+  - Chlorophyll (scaled): 35% weight
+  - Ocean fronts (gradient magnitude): 25% weight
+  - Bloom mask (85th percentile threshold): 15% weight
+  - Water clarity (-Kd490): 15% weight
+  - Backscatter (particle proxy): 10% weight
+
+**Final HSI Calculation**:
+```
+HSI = Σ(weight_i × feature_i) → normalized to [0,1] range
+```
+
+### 3. Advanced Oceanographic Feature Detection
+
+**Eddy Detection using Okubo-Weiss Parameter**:
+- Computes geostrophic velocities from sea surface height
+- Calculates strain, shear, and vorticity components
+- **Okubo-Weiss Parameter**: `OW = strain + shear - vorticity`
+- Eddy cores identified where `OW < -0.2 × standard_deviation(OW)`
+
+**Ocean Front Detection**:
+- Gradient magnitude computation: `|∇field| = √(∂f/∂x)² + (∂f/∂y)²`
+- Threshold at 90th percentile of gradient magnitudes
+- Accounts for geographic scaling (meters per degree latitude/longitude)
+
+### 4. Feeding Event Detection Algorithm
+
+**Accelerometer-based Detection**:
+- **Total Acceleration**: `magnitude = √(ax² + ay² + az²)`
+- **Bandpass Filtering**: Isolates jaw movement frequencies (0.5-5.0 Hz)
+- **Threshold Detection**: Feeding events when acceleration > 2.5g threshold
+- **Spectral Analysis**: FFT-based frequency domain analysis for behavior classification
+
+**Behavioral State Classification**:
+Uses multiple features:
+- Acceleration variance
+- Dominant frequencies
+- Movement patterns
+- Depth change rates
+
+### 5. Uncertainty Quantification
+
+**Monte Carlo Approach**:
+- Generates multiple realizations with parameter variations
+- Computes prediction variance across ensemble
+- **Confidence Intervals**: Based on percentile ranges of ensemble predictions
+- **Uncertainty Propagation**: Tracks error through all processing steps
+
+## Key Scientific Principles
+
+### Trophic Energy Transfer
+- **10% Rule**: Energy transfer efficiency of ~80% between trophic levels
+- **Time Lags**: Realistic delays based on marine ecosystem dynamics
+- **Spatial Coupling**: Links satellite-observed primary productivity to predator distributions
+
+### Oceanographic Physics
+- **Geostrophic Balance**: Relates sea surface height gradients to ocean currents
+- **Front Formation**: Identifies convergence zones where prey accumulates
+- **Eddy Dynamics**: Detects retention zones that concentrate nutrients and prey
+
+### Behavioral Ecology
+- **Foraging Theory**: Links environmental conditions to feeding probability
+- **Habitat Selection**: Multi-factor optimization of thermal, prey, and physical conditions
+- **Movement Patterns**: Distinguishes between hunting, feeding, and traveling behaviors
+
+## Input Data
 
 The system processes NASA PACE L2 Ocean Color/Biogeochemical data:
 - **Chlorophyll-a concentration** (`chlor_a`)
@@ -35,7 +117,15 @@ The system processes NASA PACE L2 Ocean Color/Biogeochemical data:
 - **Backscattering coefficient** (`bbp_443`)
 - **Geographic coordinates** (`latitude`, `longitude`)
 
-## 🛠️ Installation
+## Data Integration Strategy
+
+The system processes NASA PACE satellite data through:
+1. **Variable Detection**: Automatic identification of chlorophyll, turbidity, and backscatter fields
+2. **Quality Control**: Handles missing data and outliers using robust statistical methods
+3. **Temporal Analysis**: Applies time-series algorithms to capture ecosystem dynamics
+4. **Spatial Analysis**: Uses geographic information to weight gradients and distances appropriately
+
+## Installation
 
 ### Prerequisites
 - Python 3.8+
@@ -54,7 +144,7 @@ pip install -r requirements.txt
 python main.py [input_file.nc]
 ```
 
-## 📈 Usage
+## Usage
 
 ### Basic Usage
 ```bash
@@ -86,7 +176,7 @@ If automatic variable detection fails, create `overrides.json`:
 python main.py input.nc --overrides custom_overrides.json
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 trophic-shark-modeling/
@@ -107,7 +197,7 @@ trophic-shark-modeling/
 └── README.md                 # This file
 ```
 
-## 🎯 Output Products
+## Output Products
 
 ### Habitat Prediction Maps
 - **Advanced_HSI.png**: Comprehensive habitat suitability index
@@ -127,7 +217,7 @@ trophic-shark-modeling/
 - **nasa_challenge_summary.txt**: Complete results summary
 - **group_tree.txt**: NetCDF file structure analysis
 
-## 🔬 Scientific Approach
+## Scientific Approach
 
 ### Trophic Cascade Modeling
 The system implements realistic time lags in marine food webs:
@@ -149,7 +239,7 @@ Demonstrates concepts for:
 - Data compression for satellite transmission
 - Real-time habitat validation
 
-## 🎓 Educational Impact
+## Educational Impact
 
 The project creates accessible visualizations explaining:
 - How satellites monitor ocean ecosystems
@@ -158,7 +248,7 @@ The project creates accessible visualizations explaining:
 - Uncertainty in scientific predictions
 - Real-world applications of space technology
 
-## 🌍 Conservation Applications
+## Conservation Applications
 
 ### Management Support
 - **Habitat Hotspot Identification**: Priority areas for protection
@@ -172,7 +262,7 @@ The project creates accessible visualizations explaining:
 - **Multi-species Modeling**: Extensible to other marine predators
 - **Ecosystem Monitoring**: Integrated ocean health assessment
 
-## 🔧 Technical Requirements
+## Technical Requirements
 
 ### System Requirements
 - **Memory**: 4GB+ RAM recommended
@@ -184,7 +274,7 @@ The project creates accessible visualizations explaining:
 - Geographic coverage: Global ocean regions
 - Temporal resolution: Daily to weekly composites
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions to improve the modeling framework:
 1. Fork the repository
@@ -199,7 +289,7 @@ We welcome contributions to improve the modeling framework:
 - Validation with field data
 - User interface development
 
-## 📚 References
+## References
 
 ### Scientific Background
 - NASA PACE Mission: Ocean color and biogeochemistry
@@ -213,21 +303,21 @@ We welcome contributions to improve the modeling framework:
 - Geospatial analysis best practices
 - Marine data visualization standards
 
-## 🏆 NASA Space Apps Challenge
+## NASA Space Apps Challenge
 
 This project addresses multiple challenge requirements:
-- ✅ Mathematical framework for shark identification
-- ✅ NASA satellite data integration
-- ✅ Trophic step consideration
-- ✅ Physical oceanographic features
-- ✅ Real-time tag concept demonstration
-- ✅ Educational content creation
-- ✅ Conservation applications
+- Mathematical framework for shark identification
+- NASA satellite data integration
+- Trophic step consideration
+- Physical oceanographic features
+- Real-time tag concept demonstration
+- Educational content creation
+- Conservation applications
 
-## 📞 Contact
+## Contact
 
 For questions about the modeling framework or collaboration opportunities, please open an issue in the repository.
 
 ---
 
-*Developed for the NASA Space Apps Challenge - Connecting space technology with ocean conservation* 🌊🛰️🦈
+*Developed for the NASA Space Apps Challenge - Connecting space technology with ocean conservation*
