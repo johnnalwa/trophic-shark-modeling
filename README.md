@@ -202,6 +202,9 @@ trophic-shark-modeling/
 ### Primary Habitat Prediction Maps
 
 #### Advanced_HSI.png - Comprehensive Habitat Suitability Index
+
+![Advanced Habitat Suitability Index](outputs/Advanced_HSI.png)
+
 **Findings**: 
 - Mean habitat suitability: 0.054 (relatively low overall)
 - Peak habitat suitability: 0.700 (moderate maximum)
@@ -209,24 +212,36 @@ trophic-shark-modeling/
 - **Conclusion**: The analyzed PACE data region shows generally low to moderate shark habitat suitability, with no areas reaching optimal conditions. This suggests either suboptimal environmental conditions during the observation period or the need for temporal integration of multiple datasets.
 
 #### HSI.png - Basic Habitat Suitability Index
+
+![Basic Habitat Suitability Index](outputs/HSI.png)
+
 **Findings**:
 - Simplified model using chlorophyll, water clarity, and particle backscatter
 - Shows spatial patterns consistent with oceanographic features
 - **Conclusion**: Basic model provides baseline habitat assessment, identifying areas with favorable primary productivity and water conditions that may support prey aggregations.
 
 #### prey_density.png - Estimated Food Availability
+
+![Prey Density Index](outputs/prey_density.png)
+
 **Findings**:
 - Derived from trophic cascade modeling with 30-day system lag
 - Shows delayed response patterns following phytoplankton blooms
 - **Conclusion**: Prey density estimates reveal the temporal disconnect between satellite-observed primary productivity and actual food availability for sharks, emphasizing the importance of trophic lag modeling.
 
 #### frontal_zones.png - Ocean Front Detection
+
+![Frontal Zones](outputs/frontal_zones.png)
+
 **Findings**:
 - Identifies convergence zones using gradient analysis
 - Fronts detected at 90th percentile threshold of chlorophyll gradients
 - **Conclusion**: Ocean fronts represent critical foraging areas where prey concentrates due to physical oceanographic processes. These zones are priority areas for shark habitat prediction.
 
 #### uncertainty.png - Prediction Confidence Levels
+
+![Prediction Uncertainty](outputs/uncertainty.png)
+
 **Findings**:
 - Mean prediction uncertainty: 0.304
 - High confidence areas (<0.3 uncertainty): 24.2% of region
@@ -235,24 +250,36 @@ trophic-shark-modeling/
 ### Supporting Analysis Maps
 
 #### chl_scaled.png - Chlorophyll Distribution (Scaled)
+
+![Chlorophyll Scaled](outputs/chl_scaled.png)
+
 **Findings**:
 - Shows primary productivity patterns from PACE satellite data
 - Robust scaling applied to handle outliers and extreme values
 - **Conclusion**: Chlorophyll patterns provide the foundation for trophic cascade modeling, representing the base of the marine food web that ultimately supports shark populations.
 
 #### bloom.png - Phytoplankton Bloom Mask
+
+![Bloom Mask](outputs/bloom.png)
+
 **Findings**:
 - Binary mask identifying areas above 85th percentile chlorophyll threshold
 - Represents high productivity zones that initiate trophic cascades
 - **Conclusion**: Bloom areas are starting points for the 30-day trophic cascade process leading to enhanced shark foraging opportunities.
 
 #### fronts.png - Gradient Magnitude Analysis
+
+![Fronts Gradient](outputs/fronts.png)
+
 **Findings**:
 - Raw gradient calculations before thresholding
 - Shows intensity of oceanographic boundaries
 - **Conclusion**: Gradient analysis reveals the strength of physical processes that concentrate nutrients and prey, with stronger gradients indicating more pronounced habitat features.
 
 #### trophic_response.png - Trophic Cascade Output
+
+![Trophic Response](outputs/trophic_response.png)
+
 **Findings**:
 - Shows the mathematical result of the multi-step trophic model
 - Demonstrates time-delayed ecosystem response to primary productivity
@@ -261,24 +288,36 @@ trophic-shark-modeling/
 ### Educational Visualization Series
 
 #### educational_shark_habitat_prediction.png - Comprehensive Overview
+
+![Educational Shark Habitat Prediction](outputs/educational_shark_habitat_prediction.png)
+
 **Findings**:
 - Multi-panel display showing all habitat components
 - Designed for high school and public education audiences
 - **Conclusion**: Successfully demonstrates the complexity of marine ecosystem modeling while remaining accessible to non-experts.
 
 #### educational_trophic_cascade.png - Food Web Dynamics
+
+![Educational Trophic Cascade](outputs/educational_trophic_cascade.png)
+
 **Findings**:
 - Illustrates the step-by-step energy transfer through marine food webs
 - Shows temporal lags between trophic levels
 - **Conclusion**: Effectively communicates the scientific basis for time-delayed habitat predictions and the connection between satellite data and shark ecology.
 
 #### educational_habitat_components.png - Feature Breakdown
+
+![Educational Habitat Components](outputs/educational_habitat_components.png)
+
 **Findings**:
 - Separates individual habitat factors for educational clarity
 - Shows relative importance of different environmental variables
 - **Conclusion**: Helps students understand how multiple oceanographic factors combine to create suitable shark habitat.
 
 #### educational_prediction_uncertainty.png - Uncertainty Communication
+
+![Educational Prediction Uncertainty](outputs/educational_prediction_uncertainty.png)
+
 **Findings**:
 - Visualizes confidence levels and prediction limitations
 - Emphasizes the importance of uncertainty in scientific modeling
