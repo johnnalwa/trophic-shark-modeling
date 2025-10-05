@@ -213,10 +213,6 @@ We welcome contributions to improve the modeling framework:
 - Geospatial analysis best practices
 - Marine data visualization standards
 
-## 📄 License
-
-This project is developed for the NASA Space Apps Challenge and is available for educational and research purposes.
-
 ## 🏆 NASA Space Apps Challenge
 
 This project addresses multiple challenge requirements:
